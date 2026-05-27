@@ -1,7 +1,7 @@
-alpaca-py
+﻿alpaca-py
 alpaca_trade_api>=2.1.0
 ccxt>=1.66.32
-elegantrl
+# elegantrl  # installed via pip --no-deps
 
 gputil
 gymnasium
@@ -45,7 +45,7 @@ stable-baselines3[extra]
 stockstats>=0.4.0
 swig
 
-TA-lib # conda install -c conda-forge ta-lib
+# TA-lib # installed via conda
 
 tensorboard
 webdriver-manager
