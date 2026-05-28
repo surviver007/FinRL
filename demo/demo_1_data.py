@@ -18,7 +18,13 @@ from finrl.config import INDICATORS
 from finrl.meta.preprocessor.preprocessors import data_split, FeatureEngineer
 
 # ===== Tushare config =====
-TS_TOKEN = "8347a171dac7fe6fc71fdb12e9455a424754db51efc025b5b9acdc63"
+TS_TOKEN = os.environ.get("TUSHARE_TOKEN")
+if not TS_TOKEN:
+    raise RuntimeError(
+        "Missing TUSHARE_TOKEN environment variable. "
+        "Set it before running this script, for example: "
+        "$env:TUSHARE_TOKEN='your_token'"
+    )
 ts.set_token(TS_TOKEN)
 pro = ts.pro_api()
 

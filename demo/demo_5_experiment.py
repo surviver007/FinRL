@@ -15,6 +15,8 @@ FinRL Demo Step 5: Parameter Tuning Experiment
 import os
 import sys
 import time
+from typing import Dict, List
+
 import numpy as np
 import pandas as pd
 from stable_baselines3 import PPO, A2C, SAC
@@ -160,9 +162,10 @@ for exp in EXPERIMENTS:
 # ============================================================
 print("\n--- Backtesting ---\n")
 
-all_account_values = {}
+all_account_values: Dict[str, List[float]] = {}
 
 for exp in EXPERIMENTS:
+    label = str(exp["label"])
     save_path = os.path.join(MODEL_DIR, f"exp_{exp['name']}")
     algo_cls = ALGO_MAP[exp["algo"]]
     model = algo_cls.load(save_path)
@@ -211,9 +214,9 @@ for exp in EXPERIMENTS:
         "sharpe": sharpe,
         "final_value": final,
     })
-    all_account_values[exp["label"]] = account_values
+    all_account_values[label] = account_values
 
-    print(f"  [{exp['label']}] Return: {ret_pct:+.2f}%  MaxDD: {max_dd:.2f}%  Sharpe: {sharpe:+.2f}")
+    print(f"  [{label}] Return: {ret_pct:+.2f}%  MaxDD: {max_dd:.2f}%  Sharpe: {sharpe:+.2f}")
 
 
 # ============================================================
